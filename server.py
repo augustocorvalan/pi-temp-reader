@@ -2,8 +2,8 @@ import os
 import glob
 import time
 from flask import Flask
+from flask import render_template
 app = Flask(__name__)
-
 
 os.system('modprobe w1-gpio')
 os.system('modprobe w1-therm')
@@ -46,7 +46,10 @@ def get_temp_sentiment(temp):
 
 @app.route("/")
 def hello():
-	return "%10.3f C, %10.3f F" % read_temp()
+    temp_f = read_temp()[0]
+    klass = get_temp_sentiment(temp_f)
+    formatted_temp = "%10.1f" % temp_f
+    return render_template('hello.html', temp_f=formatted_temp, klass=klass)
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=81, debug=True)
