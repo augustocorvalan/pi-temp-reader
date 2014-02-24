@@ -2,8 +2,9 @@
 <html>
 	<head>
 		<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-		<link rel="stylesheet" type="text/css" href="/static/css/symbols.css">
-		<link rel="stylesheet" type="text/css" href="/static/css/styles.css">
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='symbols.css')}}">
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css')}}">
+		<script type="text/javascript" src="//code.jquery.com/jquery-1.10.2.min.js"></script>
 	</head>
 	<body class="{{ klass }}">
 		<div class="temp">
