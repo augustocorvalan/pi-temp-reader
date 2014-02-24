@@ -5,6 +5,9 @@
 		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/symbols.css')}}">
 		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css')}}">
 		<script type="text/javascript" src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+		<script type=text/javascript>
+  			$SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+		</script>
 		<script type="text/javascript" src="{{ url_for('static', filename='js/script.js')}}"></script>
 	</head>
 	<body class="{{ klass }}">
