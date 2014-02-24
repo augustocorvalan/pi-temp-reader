@@ -46,7 +46,7 @@ def get_temp_sentiment(temp):
 
 @app.route("/")
 def hello():
-    temp_f = read_temp()[0]
+    temp_f = read_temp()[1]
     klass = get_temp_sentiment(temp_f)
     formatted_temp = "%10.1f" % temp_f
     return render_template('hello.html', temp_f=formatted_temp, klass=klass)
