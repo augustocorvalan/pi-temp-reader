@@ -1,0 +1,33 @@
+html, body {
+    height:100%;
+    width:100%;
+    margin:0px;
+}
+
+body {
+    display:table;
+    vertical-align:middle;
+    text-align:center;
+}
+
+.temp {
+	font-family: 'Open Sans', sans-serif;
+	color: white;
+    display:table-cell;
+    vertical-align:middle;
+    font-size: 5em;
+}
+
+.warm {
+	background-color: #f1c40f;
+}
+
+.luke {
+	background-color: #16a085;
+}
+
+.cold {
+	background-color: #3498db;
+}
+
+
