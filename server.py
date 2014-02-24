@@ -44,12 +44,17 @@ def get_temp_sentiment(temp):
 
     return ret
 
-@app.route("/")
-def hello():
-    temp_f = read_temp()[1]
+def get_full_temp_info (temp):
+    temp_f = temp
     klass = get_temp_sentiment(temp_f)
     formatted_temp = "%10.1f" % temp_f
-    return render_template('hello.html', temp_f=formatted_temp, klass=klass)
+    return formatted_temp, klass
+
+
+@app.route("/")
+def hello():
+    temp_info = get_full_temp_info(read_temp()[1])
+    return render_template('hello.html', temp_f=temp_info[0], klass=temp_info[1])
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=81, debug=True)
