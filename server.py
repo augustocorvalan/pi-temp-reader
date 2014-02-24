@@ -32,6 +32,18 @@ def read_temp():
         temp_f = temp_c * 9.0 / 5.0 + 32.0
         return temp_c, temp_f
 
+#returns warm, luke, or cold based on the temperature in Farenheit
+def get_temp_sentiment(temp):
+    warm = 65
+    cold = 45
+    ret = "cold"
+    if temp >= warm:
+        ret = "warm"
+    elif temp >= cold:
+        ret = "luke"
+
+    return ret
+
 @app.route("/")
 def hello():
 	return "%10.3f C, %10.3f F" % read_temp()
