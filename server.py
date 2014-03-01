@@ -44,22 +44,25 @@ def get_temp_sentiment(temp):
 
     return ret
 
-def get_full_temp_info ():
-    temp_f = read_temp()[1] 
-    klass = get_temp_sentiment(temp_f)
-    formatted_temp = "%10.1f" % temp_f
-    return { "temp": formatted_temp, "klass": klass }
+@app.context_processor
+def utility_processor():
+    def format_temp(temp, digits):
+        return u'{number:.{digits}f}'.format(number=temp, digits=digits)
+    return dict(format_temp=format_temp)
 
 @app.route("/")
 def hello():
-    temp_info = get_full_temp_info()
-    return render_template('hello.html', temp_f=temp_info["temp"], klass=temp_info["klass"])
+    temp = read_temp()[1]
+    klass = get_temp_sentiment(temp)
+
+    return render_template('hello.html', temp=temp, klass=klass)
 
 @app.route("/update")
 def update():
-   temp_info = get_full_temp_info()
-   return jsonify(temp_info)
- 
+    temp = read_temp()[1]
+    klass = get_temp_sentiment(temp)
+
+    return jsonify(temp=temp, klass=klass)
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=81, debug=True)

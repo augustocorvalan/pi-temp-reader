@@ -13,7 +13,8 @@
 	<body class="{{ klass }}">
 		<div class="temp">
 		<i class="icon-{{ klass }}"></i>
-			{{ temp_f }} F
+			{% set accuracy = 1%}
+			<span class="temp">{{ format_temp(temp, accuracy) }}</span> F
 		</div>
 	</body>
 </html>
