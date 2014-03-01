@@ -5,6 +5,8 @@ import random
 from flask import Flask, render_template, jsonify
 app = Flask(__name__)
 
+ACCURACY = 1
+
 os.system('modprobe w1-gpio')
 os.system('modprobe w1-therm')
 
@@ -44,10 +46,11 @@ def get_temp_sentiment(temp):
 
     return ret
 
+def format_temp(temp, digits):
+    return u'{number:.{digits}f}'.format(number=temp, digits=digits)
+
 @app.context_processor
 def utility_processor():
-    def format_temp(temp, digits):
-        return u'{number:.{digits}f}'.format(number=temp, digits=digits)
     return dict(format_temp=format_temp)
 
 @app.route("/")
@@ -55,11 +58,11 @@ def hello():
     temp = read_temp()[1]
     klass = get_temp_sentiment(temp)
 
-    return render_template('hello.html', temp=temp, klass=klass)
+    return render_template('hello.html', temp=temp, klass=klass, accuracy=ACCURACY)
 
 @app.route("/update")
 def update():
-    temp = read_temp()[1]
+    temp = format_temp(read_temp()[1], ACCURACY)
     klass = get_temp_sentiment(temp)
 
     return jsonify(temp=temp, klass=klass)
