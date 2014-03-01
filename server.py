@@ -1,8 +1,8 @@
 import os
 import glob
 import time
-from flask import Flask
-from flask import render_template
+import random
+from flask import Flask, render_template, jsonify
 app = Flask(__name__)
 
 os.system('modprobe w1-gpio')
