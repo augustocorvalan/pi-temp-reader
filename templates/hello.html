@@ -10,8 +10,9 @@
 		</script>
 		<script type="text/javascript" src="{{ url_for('static', filename='js/script.js')}}"></script>
 	</head>
+
 	<body class="{{ klass }}">
-		<div class="temp">
+		<div class="temp-wrapper">
 		<i class="icon-{{ klass }}"></i>
 			{% set accuracy = 1%}
 			<span class="temp">{{ format_temp(temp, accuracy) }}</span> F

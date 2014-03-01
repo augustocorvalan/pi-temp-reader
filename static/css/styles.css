@@ -10,7 +10,7 @@ body {
     text-align:center;
 }
 
-.temp {
+.temp-wrapper {
 	font-family: 'Open Sans', sans-serif;
 	color: white;
     display:table-cell;
